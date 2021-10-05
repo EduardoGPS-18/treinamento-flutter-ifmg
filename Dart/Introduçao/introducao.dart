@@ -1,9 +1,9 @@
 import 'funcs.dart';
 
 void main() {
-  String name = "Carlos";
-  int idade = 20;
-  double pontuacao = 2.5;
+  final String name = "Carlos";
+  final int idade = 20;
+  final double pontuacao = 2.5;
   List<String> jogos = [
     "Mario",
     "Sonic",
