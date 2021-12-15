@@ -4,15 +4,10 @@ import 'package:requisicoes/components/components.dart';
 import 'package:requisicoes/models/models.dart';
 import 'package:requisicoes/pages/pages.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class HomePage extends StatelessWidget {
+  final HomePageController homePageController = HomePageController();
 
-  @override
-  State<HomePage> createState() => _HomePageState();
-}
-
-class _HomePageState extends State<HomePage> {
-  HomePageController homePageController = HomePageController();
+  HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
