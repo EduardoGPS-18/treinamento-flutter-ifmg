@@ -1,17 +1,21 @@
 import 'package:flutter/material.dart';
 
-class CounterPage extends StatefulWidget {
-  const CounterPage({Key? key}) : super(key: key);
+abstract class ICounterPageController {
+  Stream<int> get counterStream;
 
-  @override
-  State<CounterPage> createState() => _CounterPageState();
+  int get counter;
+
+  void inc();
+  void dec();
 }
 
-class _CounterPageState extends State<CounterPage> {
-  int counter = 0;
+class CounterPage extends StatelessWidget {
+  final ICounterPageController controller;
 
-  void inc() => setState(() => counter++);
-  void dec() => setState(() => counter--);
+  const CounterPage({
+    Key? key,
+    required this.controller,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,20 +29,27 @@ class _CounterPageState extends State<CounterPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             IconButton(
-              onPressed: inc,
+              onPressed: controller.inc,
               icon: const Icon(
                 Icons.add,
                 size: 32,
               ),
             ),
-            Text(
-              '$counter',
-              style: const TextStyle(
-                fontSize: 32,
-              ),
+            StreamBuilder<int>(
+              stream: controller.counterStream,
+              initialData: controller.counter,
+              builder: (context, snapshot) {
+                final counter = snapshot.hasData ? snapshot.data : 0;
+                return Text(
+                  '$counter',
+                  style: const TextStyle(
+                    fontSize: 32,
+                  ),
+                );
+              },
             ),
             IconButton(
-              onPressed: dec,
+              onPressed: controller.dec,
               icon: const Icon(
                 Icons.remove,
                 size: 32,
