@@ -4,10 +4,24 @@ import 'package:requisicoes/components/components.dart';
 import 'package:requisicoes/models/models.dart';
 import 'package:requisicoes/pages/pages.dart';
 
-class HomePage extends StatelessWidget {
-  final HomePageController homePageController = HomePageController();
+import 'home_page_controller_contract.dart';
 
-  HomePage({Key? key}) : super(key: key);
+class HomePage extends StatefulWidget {
+  final IHomePageController controller;
+
+  const HomePage({Key? key, required this.controller}) : super(key: key);
+
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    widget.controller.loadHomePageData();
+    widget.controller.names.listen(print);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,8 +30,8 @@ class HomePage extends StatelessWidget {
         title: const Text("Requisicoes"),
         centerTitle: true,
       ),
-      body: FutureBuilder<List<User>>(
-        future: homePageController.users,
+      body: StreamBuilder<List<User>>(
+        stream: widget.controller.users,
         builder: (context, snapshot) {
           if (snapshot.hasData && snapshot.data != null) {
             final users = snapshot.data!;
