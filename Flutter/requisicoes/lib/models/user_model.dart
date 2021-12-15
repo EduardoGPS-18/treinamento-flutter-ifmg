@@ -12,11 +12,10 @@ class User {
     required this.name,
     required this.username,
     required this.email,
-    required this.address
+    required this.address,
   });
 
   factory User.fromMap(Map map) {
-    
     final address = Address.fromMap(map['address']);
     return User(
       id: map['id'],
@@ -27,4 +26,3 @@ class User {
     );
   }
 }
-
