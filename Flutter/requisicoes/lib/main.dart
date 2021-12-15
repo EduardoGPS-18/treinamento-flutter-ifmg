@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'pages/counter/counter_page_controller.dart';
 import 'pages/pages.dart';
 
 void main() {

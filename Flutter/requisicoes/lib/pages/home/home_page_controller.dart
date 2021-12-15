@@ -9,7 +9,6 @@ import 'home_page_controller_contract.dart';
 class HomePageController implements IHomePageController {
   final _usersController = StreamController<List<User>>();
   Stream<List<User>> get users => _usersController.stream;
-
   final _namesController = StreamController<List<String>>();
   Stream<List<String>> get names => _namesController.stream;
 
@@ -22,7 +21,6 @@ class HomePageController implements IHomePageController {
     final usersMap = await http.get(Uri.parse('https://jsonplaceholder.typicode.com/users'));
     await Future.delayed(const Duration(seconds: 1));
     final body = jsonDecode(usersMap.body) as List;
-
     _usersController.sink.add(body.map((currentUserMap) => User.fromMap(currentUserMap as Map)).toList());
   }
 

@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:requisicoes/components/components.dart';
 
 import 'package:requisicoes/models/models.dart';
-import 'package:requisicoes/pages/pages.dart';
 
 import 'home_page_controller_contract.dart';
 
