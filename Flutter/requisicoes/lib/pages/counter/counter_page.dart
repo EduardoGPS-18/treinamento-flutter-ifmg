@@ -1,13 +1,6 @@
 import 'package:flutter/material.dart';
 
-abstract class ICounterPageController {
-  Stream<int> get counterStream;
-
-  int get counter;
-
-  void inc();
-  void dec();
-}
+import 'counter_page_controller_contract.dart';
 
 class CounterPage extends StatelessWidget {
   final ICounterPageController controller;

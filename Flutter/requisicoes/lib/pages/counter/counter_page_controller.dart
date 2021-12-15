@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import '../pages.dart';
+import 'counter_page_controller_contract.dart';
 
 class CounterPageController implements ICounterPageController {
   final _counterCountroller = StreamController<int>();
